@@ -26,11 +26,7 @@ public class GenerarTicket {
 
     String Tiempo, Plan, Usuario, Contraseña, Fecha;
 
-    public GenerarTicket(String Plan, String Tiempo) throws MikrotikApiException {
-        ApiConnection con = ApiConnection.connect("192.168.10.1"); // connect to router
-        con.login("admin", "jesus00**"); // log in to router
-        
-
+    public GenerarTicket(String Plan, String Tiempo) {
         final String alphabet = "abcdefghijkmnj";
         final String numbers = "1234567890";
         final int N = alphabet.length();
@@ -58,7 +54,7 @@ public class GenerarTicket {
             String query = ("INSERT INTO tickets(Usuario, Contraseña, Tiempo, Plan, Fecha) VALUES('" + UsuarioGen + "','" + ContraseñaGen + "','" + Tiempo + "','" + Plan + "','" + FechaGen + "')");
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(query);
-            con.execute("/ip/hotspot/user/add name='" + UsuarioGen + "' limit-uptime=60 profile='" + Plan + "' password='" + ContraseñaGen + "'"); // execute a command
+            ExecCommandMikrotik CommandMi = new ExecCommandMikrotik(UsuarioGen, ContraseñaGen, Plan, Tiempo); //Llamar clase para agregar comando al RouterBoard
             JOptionPane.showMessageDialog(null, "¡Usuario generado con éxito!\n\n"
                     + "Nombre de usuario:\t " + UsuarioGen + "\n"
                     + "Contraseña:\t " + ContraseñaGen + "\n"
@@ -70,8 +66,6 @@ public class GenerarTicket {
             JOptionPane.showMessageDialog(null, "Se presentó un problema al generar el usuario.");
             e.printStackTrace();
         }
-        //System.out.println(UsuarioGen+" "+ ContraseñaGen+" "+ Tiempo+" " +Plan+ " "+FechaGen);
-        con.disconnect(); // disconnect from router
     }
 
 }

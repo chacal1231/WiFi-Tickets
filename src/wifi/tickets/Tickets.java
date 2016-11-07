@@ -45,7 +45,8 @@ public class Tickets extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Plan");
 
-        Tiempo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Hora", "1 Día", "7 Días", "15 Días", "1 Mes" }));
+        Tiempo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 Hora", "1 Dia", "7 Dias", "15 Dias", "1 Mes" }));
+        Tiempo.setToolTipText("");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Tiempo");

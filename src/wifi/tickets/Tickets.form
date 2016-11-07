@@ -104,12 +104,13 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
             <StringItem index="0" value="1 Hora"/>
-            <StringItem index="1" value="1 D&#xed;a"/>
-            <StringItem index="2" value="7 D&#xed;as"/>
-            <StringItem index="3" value="15 D&#xed;as"/>
+            <StringItem index="1" value="1 Dia"/>
+            <StringItem index="2" value="7 Dias"/>
+            <StringItem index="3" value="15 Dias"/>
             <StringItem index="4" value="1 Mes"/>
           </StringArray>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
