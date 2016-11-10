@@ -57,10 +57,10 @@ public class GenerarTicket {
             stmt.executeUpdate(query);
             ExecCommandMikrotik CommandMi = new ExecCommandMikrotik(UsuarioGen, ContraseñaGen, Plan, Tiempo); //Llamar clase para agregar comando al RouterBoard
             JOptionPane.showMessageDialog(null, "¡Usuario generado con éxito!\n\n"
-                    + "Nombre de usuario:\t " + UsuarioGen + "\n"
-                    + "Contraseña:\t " + ContraseñaGen + "\n"
-                    + "Plan:\t " + Plan + "\n"
-                    + "Tiempo:\t " + Tiempo + "\n"
+                    + "Nombre de usuario:       " + UsuarioGen + "\n"
+                    + "Contraseña:                     " + ContraseñaGen + "\n"
+                    + "Plan:                                  " + Plan + "\n"
+                    + "Tiempo:                            " + Tiempo + "\n"
             );
 
         } catch (Exception e) {
