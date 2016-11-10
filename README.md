@@ -1,0 +1,7 @@
+##WiFi-Tickets
+WiFi-Tickets busca facilitar la venta de tickets para acceso a internet por tiempo, el sistema tiene como principal objetivo mejorar el manejo de equipos hotspot (portal cautivo) conectando una interfaz gráfica (Java) y base de datos (Mysql). WiFi-Tickets consistirá principalmente en la creación de un aplicativo en el lenguaje de programación java para la optimización de las bases de datos que maneja una empresa para proveer el servicio de Internet a lugares remotos del país. En el aplicativo, el administrador podrá controlar remotamente las bases de datos para proveer el servicio. Esto sucede cuando el administrador genera un ticket, esta información se envía al RouterBoard, que con la información proporcionada le da los permisos a la persona que requirió el servicio y así se termina el ciclo. Aparte de esa función, el administrador podrá observar tanto el historial de ventas de tickets. Además, podrá modificar los servicios y planes que ofrece la empresa.
+
+![](https://s11.postimg.org/ky2zoed2b/Captura.png)
+
+##Conexión con el equipo hotspot (RouterBoard)
+La conexión al RouterBoard se generará utilizando sockets, el equipo cuenta con un puerto TCP de administración remota (8291) donde se podrá comunicar cualquier aplicativo con el equipo. Esta conexión cuenta con un medio seguro de autenticación (TLS) el cual mediante técnicas de encriptación se podrá cifrar toda la información del usuario, así se podrá tener un mejor manejo de la información del usuario.
