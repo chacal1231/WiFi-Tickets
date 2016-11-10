@@ -32,7 +32,7 @@ public class VentasFecha {
             pst.setString(2, Fecha2);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                System.out.println(rs.getString("total"));
+                JOptionPane.showMessageDialog(null, "Las ventas desde " + Fecha1 +" hasta " + Fecha2 + " es de\n\n                          "+rs.getString("total")+" Pesos");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Se presentó un problema ver el registro de ventas.");
