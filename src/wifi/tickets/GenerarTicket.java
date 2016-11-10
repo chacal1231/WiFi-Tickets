@@ -34,6 +34,7 @@ public class GenerarTicket {
         String UsuarioGen = "";
         String ContraseñaGen = "";
         String FechaGen;
+        int Precio = 10000;
         Random r = new Random();
         for (int i = 0; i < 5; i++) {
             UsuarioGen += Character.toString(alphabet.charAt(r.nextInt(N)));
@@ -51,7 +52,7 @@ public class GenerarTicket {
 
         try {
             Connection conn = DbConnect.getConnection();
-            String query = ("INSERT INTO tickets(Usuario, Contraseña, Tiempo, Plan, Fecha) VALUES('" + UsuarioGen + "','" + ContraseñaGen + "','" + Tiempo + "','" + Plan + "','" + FechaGen + "')");
+            String query = ("INSERT INTO tickets(Usuario, Contraseña, Tiempo, Plan, Precio, Fecha) VALUES('" + UsuarioGen + "','" + ContraseñaGen + "','" + Tiempo + "','" + Plan + "', '" + Precio + "', '" + FechaGen + "')");
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(query);
             ExecCommandMikrotik CommandMi = new ExecCommandMikrotik(UsuarioGen, ContraseñaGen, Plan, Tiempo); //Llamar clase para agregar comando al RouterBoard

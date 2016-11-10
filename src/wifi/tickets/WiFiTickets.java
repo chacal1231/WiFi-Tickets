@@ -14,16 +14,12 @@ import javax.swing.JOptionPane;
  */
 public class WiFiTickets {
 
-    String usuario = Login.Usuario.getText();
-    String Contraseña = String.valueOf(Login.Contraseña.getPassword());
-
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       new Login().setVisible(true);
-       
-      
+        new Login().setVisible(true);
+
     }
 
 }
