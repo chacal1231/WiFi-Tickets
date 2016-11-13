@@ -19,8 +19,9 @@ public class DbConnect {
     public static Connection getConnection() throws Exception {
         if (connection == null) {
             //JDBC
+            GetConfig Gc = new GetConfig();
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/wifi-tickets", "root", "123456789");
+            connection = DriverManager.getConnection("jdbc:mysql://"+ Gc.DbIP() +":3306/wifi-tickets", Gc.DbUsuario(), Gc.DbContra());
         }
         return connection;
     }
