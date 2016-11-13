@@ -12,7 +12,7 @@ import java.util.Properties;
 
 /**
  *
- * @author ACER-PC
+ * @author ACER-PCd
  */
 public class GetConfig {
 

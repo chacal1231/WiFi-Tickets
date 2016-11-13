@@ -21,7 +21,7 @@ public class DbConnect {
             //JDBC
             GetConfig Gc = new GetConfig();
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://"+ Gc.DbIP() +":3306/wifi-tickets", Gc.DbUsuario(), Gc.DbContra());
+            connection = DriverManager.getConnection("jdbc:mysql://" + Gc.DbIP() + ":3306/wifi-tickets", Gc.DbUsuario(), Gc.DbContra());
         }
         return connection;
     }
