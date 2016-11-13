@@ -15,6 +15,7 @@ import me.legrange.mikrotik.MikrotikApiException;
 public class ExecCommandMikrotik {
 
     String UsuarioGen, ContraseñaGen, Plan, Tiempo;
+    GetConfig Gc = new GetConfig();
 
     public ExecCommandMikrotik(String UsuarioGen, String ContraseñaGen, String Plan, String Tiempo) throws MikrotikApiException {
         this.UsuarioGen = UsuarioGen;
@@ -23,8 +24,8 @@ public class ExecCommandMikrotik {
         this.Tiempo = Tiempo;
         int TiempoMinutos = 0;
         //RouterBoard
-        ApiConnection con = ApiConnection.connect("192.168.10.1"); // Conexión al RouterBoard
-        con.login("admin", "jesus00**"); // Acceder al RouterBoard
+        ApiConnection con = ApiConnection.connect(Gc.RbIP()); // Conexión al RouterBoard
+        con.login(Gc.DbUsuario(), Gc.DbContra()); // Acceder al RouterBoard
         //EjecutarComando
         switch (Tiempo) {
             case "1 Hora": {
