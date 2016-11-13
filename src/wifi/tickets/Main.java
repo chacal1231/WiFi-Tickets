@@ -5,6 +5,23 @@
  */
 package wifi.tickets;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.PieSectionLabelGenerator;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
+
 /**
  *
  * @author ACER-PC
@@ -33,6 +50,7 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         CambioContra = new javax.swing.JButton();
         Planes = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Panel principal");
@@ -86,6 +104,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,7 +114,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 177, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(114, 114, 114))
                     .addGroup(layout.createSequentialGroup()
@@ -104,7 +124,9 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(CambioContra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(GenTicket, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(RegistroVenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(530, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,16 +134,20 @@ public class Main extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(GenTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(RegistroVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(RegistroUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Planes, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(CambioContra, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(GenTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(RegistroVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(RegistroUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Planes, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CambioContra, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -129,27 +155,27 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GenTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenTicketActionPerformed
-        this.setVisible(false);    
+        this.setVisible(false);
         new Tickets().setVisible(true);
     }//GEN-LAST:event_GenTicketActionPerformed
 
     private void RegistroVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroVentaActionPerformed
-        this.setVisible(false);    
+        this.setVisible(false);
         new Ventas().setVisible(true);
     }//GEN-LAST:event_RegistroVentaActionPerformed
 
     private void CambioContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CambioContraActionPerformed
-        this.setVisible(false);    
+        this.setVisible(false);
         new CambioContra().setVisible(true);
     }//GEN-LAST:event_CambioContraActionPerformed
 
     private void RegistroUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroUsuActionPerformed
-        this.setVisible(false);    
+        this.setVisible(false);
         new RegistroUsu().setVisible(true);
     }//GEN-LAST:event_RegistroUsuActionPerformed
 
     private void PlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlanesActionPerformed
-        this.setVisible(false);    
+        this.setVisible(false);
         new Planes().setVisible(true);
     }//GEN-LAST:event_PlanesActionPerformed
 
@@ -184,6 +210,41 @@ public class Main extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
+
+                try {
+                    Connection conn = DbConnect.getConnection();
+                    PreparedStatement pst = (PreparedStatement) conn.prepareStatement("SELECT Mes, sum(Precio) as total FROM tickets GROUP BY Mes");
+                    ResultSet rs = pst.executeQuery();
+                    DefaultPieDataset dataset = new DefaultPieDataset();
+                    while (rs.next()) {
+                        dataset.setValue(
+                                rs.getString("Mes"),
+                                Double.parseDouble(rs.getString("total")));
+                    }
+                    JFreeChart chart = ChartFactory.createPieChart(
+                            "Ventas mensuales", // chart title           
+                            dataset, // data           
+                            true, // include legend          
+                            true,
+                            true);
+                    chart.setBackgroundPaint(new Color(240, 240, 240));
+                    final PiePlot plot = (PiePlot) chart.getPlot();
+                    PieSectionLabelGenerator labelGenerator = new StandardPieSectionLabelGenerator("{0}={1}",
+                            new DecimalFormat("$#,##0 COP"),
+                            NumberFormat.getPercentInstance());
+                    plot.setLabelGenerator(labelGenerator);
+                    plot.setCircular(true);
+                    plot.setSimpleLabels(true);
+                    plot.setNoDataMessage("No hay datos disponibles");
+
+                    final ChartPanel chartPanel = new ChartPanel(chart);
+                    jPanel1.add(chartPanel);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+
             }
         });
     }
@@ -195,5 +256,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton RegistroUsu;
     private javax.swing.JButton RegistroVenta;
     private javax.swing.JLabel jLabel1;
+    private static javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
