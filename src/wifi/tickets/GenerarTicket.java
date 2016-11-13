@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -44,6 +45,8 @@ public class GenerarTicket {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         FechaGen = dateFormat.format(date);
+        Calendar cal = Calendar.getInstance();
+        String Mes = new SimpleDateFormat("MMMMMMMMMM").format(cal.getTime());
         this.Plan = Plan;
         this.Tiempo = Tiempo;
         this.Usuario = UsuarioGen;
@@ -52,7 +55,7 @@ public class GenerarTicket {
 
         try {
             Connection conn = DbConnect.getConnection();
-            String query = ("INSERT INTO tickets(Usuario, Contraseña, Tiempo, Plan, Precio, Fecha) VALUES('" + UsuarioGen + "','" + ContraseñaGen + "','" + Tiempo + "','" + Plan + "', '" + Precio + "', '" + FechaGen + "')");
+            String query = ("INSERT INTO tickets(Usuario, Contraseña, Tiempo, Plan, Precio, Fecha, UsuGene, Mes) VALUES('" + UsuarioGen + "','" + ContraseñaGen + "','" + Tiempo + "','" + Plan + "', '" + Precio + "', '" + FechaGen + "', '" + "David" + "' , '" + Mes + "')");
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(query);
             ExecCommandMikrotik CommandMi = new ExecCommandMikrotik(UsuarioGen, ContraseñaGen, Plan, Tiempo); //Llamar clase para agregar comando al RouterBoard
