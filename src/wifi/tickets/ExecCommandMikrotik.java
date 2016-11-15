@@ -25,7 +25,7 @@ public class ExecCommandMikrotik {
         int TiempoMinutos = 0;
         //RouterBoard
         ApiConnection con = ApiConnection.connect(Gc.RbIP()); // Conexión al RouterBoard
-        con.login(Gc.DbUsuario(), Gc.DbContra()); // Acceder al RouterBoard
+        con.login(Gc.RbUsuario(), Gc.RbContra()); // Acceder al RouterBoard
         //EjecutarComando
         switch (Tiempo) {
             case "1 Hora": {

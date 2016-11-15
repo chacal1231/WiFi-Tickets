@@ -34,7 +34,7 @@ public class GetConfig {
         }
     }
 
-    public String GetRbUsuario() {
+    public String RbUsuario() {
         String username = config.getProperty("RbUsuario");
         return username;
     }
