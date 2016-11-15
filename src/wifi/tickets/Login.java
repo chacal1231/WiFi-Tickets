@@ -168,7 +168,7 @@ public class Login extends javax.swing.JFrame {
             if (Login.ValidarLogin(usuario, Contraseña)) {
                 JOptionPane.showMessageDialog(null, "Bienvenido " + usuario);
                 this.setVisible(false);
-                new Main().setVisible(true);
+                new Main().main();
             } else {
                 JOptionPane.showMessageDialog(null, "¡Usuario y/o contraseña incorrectos!");
             }

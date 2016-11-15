@@ -171,7 +171,7 @@ public class Main extends javax.swing.JFrame {
 
     private void RegistroUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroUsuActionPerformed
         this.setVisible(false);
-        new RegistroUsu().setVisible(true);
+        new RegistroUsu().main();
     }//GEN-LAST:event_RegistroUsuActionPerformed
 
     private void PlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlanesActionPerformed
@@ -182,7 +182,7 @@ public class Main extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String ... args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -210,7 +210,7 @@ public class Main extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
-
+                
                 try {
                     Connection conn = DbConnect.getConnection();
                     PreparedStatement pst = (PreparedStatement) conn.prepareStatement("SELECT Mes, sum(Precio) as total FROM tickets GROUP BY Mes");
