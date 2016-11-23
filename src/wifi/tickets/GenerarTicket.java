@@ -35,6 +35,7 @@ public class GenerarTicket {
         String UsuarioGen = "";
         String ContraseñaGen = "";
         String FechaGen;
+        ValidarLoginx VLX = new ValidarLoginx();
         int Precio = 10000;
         Random r = new Random();
         for (int i = 0; i < 5; i++) {
@@ -55,7 +56,7 @@ public class GenerarTicket {
 
         try {
             Connection conn = DbConnect.getConnection();
-            String query = ("INSERT INTO tickets(Usuario, Contraseña, Tiempo, Plan, Precio, Fecha, UsuGene, Mes) VALUES('" + UsuarioGen + "','" + ContraseñaGen + "','" + Tiempo + "','" + Plan + "', '" + Precio + "', '" + FechaGen + "', '" + "David" + "' , '" + Mes + "')");
+            String query = ("INSERT INTO tickets(Usuario, Contraseña, Tiempo, Plan, Precio, Fecha, UsuGene, Mes) VALUES('" + UsuarioGen + "','" + ContraseñaGen + "','" + Tiempo + "','" + Plan + "', '" + Precio + "', '" + FechaGen + "', '" + VLX.getUsuario() + "' , '" + Mes + "')");
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(query);
             ExecCommandMikrotik CommandMi = new ExecCommandMikrotik(UsuarioGen, ContraseñaGen, Plan, Tiempo); //Llamar clase para agregar comando al RouterBoard
