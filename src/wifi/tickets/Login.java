@@ -164,8 +164,9 @@ public class Login extends javax.swing.JFrame {
         } else {
             String usuario = Login.Usuario.getText();
             String Contraseña = String.valueOf(Login.Contraseña.getPassword());
-            ValidarLogin Login = new ValidarLogin();
+            ValidarLoginx Login = new ValidarLoginx();
             if (Login.ValidarLogin(usuario, Contraseña)) {
+                String usuariox=usuario;
                 JOptionPane.showMessageDialog(null, "Bienvenido " + usuario);
                 this.setVisible(false);
                 new Main().main();

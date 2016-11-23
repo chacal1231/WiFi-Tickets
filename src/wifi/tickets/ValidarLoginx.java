@@ -14,9 +14,9 @@ import wifi.tickets.DbConnect;
  *
  * @author ACER-PC
  */
-public class ValidarLogin {
+public class ValidarLoginx {
 
-    String Usuario, Contraseña;
+    static String Usuario, Contraseña;
 
     public boolean ValidarLogin(String Usuario, String Contraseña) {
         this.Usuario = Usuario;
@@ -38,6 +38,10 @@ public class ValidarLogin {
 
         }
 
+    }
+
+    public static String getUsuario() {
+        return Usuario;
     }
 
 }
