@@ -24,6 +24,7 @@ public class VentasFecha {
     public VentasFecha(String Fecha1, String Fecha2) {
         this.Fecha1 = Fecha1;
         this.Fecha2 = Fecha2;
+        String resultado;
 
         try {
             Connection conn = DbConnect.getConnection();
@@ -32,7 +33,12 @@ public class VentasFecha {
             pst.setString(2, Fecha2);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Las ventas desde " + Fecha1 +" hasta " + Fecha2 + " es de\n\n                          "+rs.getString("total")+" Pesos");
+                if(rs.getString("total")==null){
+                    resultado="0";
+                }else{
+                    resultado=rs.getString("total");
+                }
+                JOptionPane.showMessageDialog(null, "Las ventas desde " + Fecha1 +" hasta " + Fecha2 + " es de\n\n                          "+resultado+" Pesos");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Se presentó un problema ver el registro de ventas.");
