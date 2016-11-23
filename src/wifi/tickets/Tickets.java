@@ -120,7 +120,7 @@ public class Tickets extends javax.swing.JFrame {
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
         this.setVisible(false);    
-        new Main().setVisible(true);
+        new Main().main();
     }//GEN-LAST:event_VolverActionPerformed
 
     private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
