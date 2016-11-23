@@ -184,8 +184,6 @@ public class Main extends javax.swing.JFrame {
      */
     public static void main(String... args) {
         
-        ValidarLoginx x = new ValidarLoginx();
-        System.out.println(x.getUsuario());
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -213,10 +211,12 @@ public class Main extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
+                ValidarLoginx VLX = new ValidarLoginx();
 
                 try {
                     Connection conn = DbConnect.getConnection();
-                    PreparedStatement pst = (PreparedStatement) conn.prepareStatement("SELECT Mes, sum(Precio) as total FROM tickets GROUP BY Mes");
+                    PreparedStatement pst = (PreparedStatement) conn.prepareStatement("SELECT Mes, sum(Precio) as total FROM tickets WHERE UsuGene=? GROUP BY Mes");
+                    pst.setString(1, VLX.getUsuario());
                     ResultSet rs = pst.executeQuery();
                     DefaultPieDataset dataset = new DefaultPieDataset();
                     while (rs.next()) {
