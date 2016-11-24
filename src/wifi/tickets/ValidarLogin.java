@@ -14,7 +14,7 @@ import wifi.tickets.DbConnect;
  *
  * @author ACER-PC
  */
-public class ValidarLoginx {
+public class ValidarLogin {
 
     static String Usuario, Contraseña;
 
