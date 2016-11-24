@@ -35,8 +35,8 @@ public class GenerarTicket {
         String UsuarioGen = "";
         String ContraseñaGen = "";
         String FechaGen;
-        ValidarLoginx VLX = new ValidarLoginx();
-        int Precio = 10000;
+        ValidarLogin VLX = new ValidarLogin();
+        int Precio=0;
         Random r = new Random();
         for (int i = 0; i < 5; i++) {
             UsuarioGen += Character.toString(alphabet.charAt(r.nextInt(N)));
@@ -56,6 +56,22 @@ public class GenerarTicket {
 
         try {
             Connection conn = DbConnect.getConnection();
+            PreparedStatement pst = (PreparedStatement) conn.prepareStatement("Select * FROM planes WHERE plan=?");
+            pst.setString(1, Plan);
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                if(Tiempo.equals("1 Hora")){
+                    Precio=rs.getInt("1h");
+                }else if(Tiempo.equals("1 Dia")){
+                    Precio=rs.getInt("1d");
+                }else if(Tiempo.equals("7 Dias")){
+                    Precio=rs.getInt("7d");
+                }else if(Tiempo.equals("15 Dias")){
+                    Precio=rs.getInt("15d");
+                }else if(Tiempo.equals("1 Mes")){
+                    Precio=rs.getInt("1m");
+                }
+            }
             String query = ("INSERT INTO tickets(Usuario, Contraseña, Tiempo, Plan, Precio, Fecha, UsuGene, Mes) VALUES('" + UsuarioGen + "','" + ContraseñaGen + "','" + Tiempo + "','" + Plan + "', '" + Precio + "', '" + FechaGen + "', '" + VLX.getUsuario() + "' , '" + Mes + "')");
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(query);

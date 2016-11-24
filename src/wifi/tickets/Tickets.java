@@ -5,6 +5,11 @@
  */
 package wifi.tickets;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ACER-PC
@@ -51,7 +56,11 @@ public class Tickets extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Tiempo");
 
-        Plan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Celulares", "Item 2", "Item 3", "Item 4" }));
+        Plan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlanActionPerformed(evt);
+            }
+        });
 
         Volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wifi/tickets/icons/arrow-back-icon.png"))); // NOI18N
         Volver.setText("Volver");
@@ -119,18 +128,22 @@ public class Tickets extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
-        this.setVisible(false);    
+        this.setVisible(false);
         new Main().main();
     }//GEN-LAST:event_VolverActionPerformed
 
     private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
-        GenerarTicket GenTi = new GenerarTicket(Tickets.Plan.getSelectedItem().toString(),Tickets.Tiempo.getSelectedItem().toString());
+        GenerarTicket GenTi = new GenerarTicket(Tickets.Plan.getSelectedItem().toString(), Tickets.Tiempo.getSelectedItem().toString());
     }//GEN-LAST:event_GenerarActionPerformed
+
+    private void PlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PlanActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String ...args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -158,7 +171,20 @@ public class Tickets extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Tickets().setVisible(true);
+                try {
+                    Connection conn = DbConnect.getConnection();
+                    PreparedStatement pst = (PreparedStatement) conn.prepareStatement("SELECT * FROM planes");
+                    ResultSet rs = pst.executeQuery();
+                    while (rs.next()) {
+                        Plan.addItem(rs.getString("plan"));
+                    }
+
+                } catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "Se presentó un problema al generar el usuario.");
+                    e.printStackTrace();
+                }
             }
+
         });
     }
 
