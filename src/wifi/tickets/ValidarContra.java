@@ -12,7 +12,7 @@ public class ValidarContra {
     public String ValidarContra(String ContraseñaActual, String ContraseñaNueva) {
         this.ContraseñaActual = ContraseñaActual;
         this.ContraseñaNueva = ContraseñaNueva;
-        ValidarLoginx VLX = new ValidarLoginx();
+        ValidarLogin VLX = new ValidarLogin();
         try {
             Connection conn = (Connection) DbConnect.getConnection();
             PreparedStatement pst = (PreparedStatement) conn.prepareStatement("Select * from userlogin where usuario =?");
