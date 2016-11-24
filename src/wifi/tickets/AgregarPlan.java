@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import me.legrange.mikrotik.ApiConnection;
 
 /**
  *
@@ -26,6 +27,7 @@ public class AgregarPlan {
         this.P7d = P7d;
         this.P15d = P15d;
         this.P1m = P1m;
+        GetConfig Gc = new GetConfig();
         try {
             Connection conn = (Connection) DbConnect.getConnection();
             PreparedStatement pst = (PreparedStatement) conn.prepareStatement("INSERT INTO planes(plan,1h,1d,7d,15d,1m) VALUES(?,?,?,?,?,?)");
@@ -36,6 +38,9 @@ public class AgregarPlan {
             pst.setString(5, P15d);
             pst.setString(6, P1m);
             pst.executeUpdate();
+            ApiConnection con = ApiConnection.connect(Gc.RbIP()); // Conexión al RouterBoard
+            con.login(Gc.RbUsuario(), Gc.RbContra()); // Acceder al RouterBoard
+            con.execute("/ip/hotspot/user/profile/add name='" + NombrePlan + "' rate-limit='" + "1M/1M" + "' shared-users='" + "1" + "' keepalive-timeout='" + "none" + "'"); // execute a command
             JOptionPane.showMessageDialog(null, "¡Se agregó correctamente el plan");
 
         } catch (Exception e) {
