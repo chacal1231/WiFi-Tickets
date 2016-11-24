@@ -188,8 +188,10 @@ public class RegistroUsu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                    ValidarLogin VL = new ValidarLogin();
                     Connection conn = DbConnect.getConnection();
-                    PreparedStatement pst = (PreparedStatement) conn.prepareStatement("SELECT * FROM tickets ORDER BY Fecha DESC");
+                    PreparedStatement pst = (PreparedStatement) conn.prepareStatement("SELECT * FROM tickets WHERE UsuGene= ? ORDER BY Fecha DESC");
+                    pst.setString(1, VL.getUsuario());
                     ResultSet rs = pst.executeQuery();
                     int i = 0;
                     while (rs.next()) {

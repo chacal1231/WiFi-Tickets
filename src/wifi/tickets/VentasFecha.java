@@ -24,13 +24,15 @@ public class VentasFecha {
     public VentasFecha(String Fecha1, String Fecha2) {
         this.Fecha1 = Fecha1;
         this.Fecha2 = Fecha2;
+        ValidarLogin VL = new ValidarLogin();
         String resultado;
 
         try {
             Connection conn = DbConnect.getConnection();
-            PreparedStatement pst = (PreparedStatement) conn.prepareStatement("SELECT sum(Precio) as total FROM tickets WHERE Fecha BETWEEN ? AND ?");
+            PreparedStatement pst = (PreparedStatement) conn.prepareStatement("SELECT sum(Precio) as total FROM tickets WHERE Fecha BETWEEN ? AND ? AND UsuGene LIKE ?");
             pst.setString(1, Fecha1);
             pst.setString(2, Fecha2);
+            pst.setString(3, VL.getUsuario());
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 if(rs.getString("total")==null){
