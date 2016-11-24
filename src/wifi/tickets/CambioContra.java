@@ -148,31 +148,36 @@ public class CambioContra extends javax.swing.JFrame {
     }//GEN-LAST:event_ContraseñaActualActionPerformed
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
-    
+
     }//GEN-LAST:event_VolverActionPerformed
 
     private void Volver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Volver1ActionPerformed
         this.setVisible(false);
-        new Main().setVisible(true);
+         new Main().main();
     }//GEN-LAST:event_Volver1ActionPerformed
 
     private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
-    
+
     }//GEN-LAST:event_GenerarActionPerformed
 
     private void Generar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Generar1ActionPerformed
-        if (String.valueOf(CambioContra.ContraseñaActual.getPassword()).length() == 0) // Checking for empty field
+        if (String.valueOf(CambioContra.ContraseñaActual.getPassword()).length() == 0 || String.valueOf(CambioContra.ContraseñaConfirmar.getPassword()).length() == 0 || String.valueOf(CambioContra.ContraseñaNueva.getPassword()).length() == 0) // Checking for empty field
         {
             JOptionPane.showMessageDialog(null, "¡Los campos no deben estar vacios!");
-        } else {
+        }else if(!String.valueOf(CambioContra.ContraseñaNueva.getPassword()).equals(String.valueOf(CambioContra.ContraseñaConfirmar.getPassword()))){
+          
+            JOptionPane.showMessageDialog(null, "¡La contraseña nueva no coincide con la confirmación!");
+        }
+        else {
             String Contraseña = String.valueOf(CambioContra.ContraseñaActual.getPassword());
+            String ContraseñaNueva = String.valueOf(CambioContra.ContraseñaNueva.getPassword());
             ValidarContra ContraCambio = new ValidarContra();
-            if (ContraCambio.ValidarContra(Contraseña)) {
+            if (ContraCambio.ValidarContra(Contraseña,ContraseñaNueva).equals("SI")) {
                 JOptionPane.showMessageDialog(null, "La contraseña se cambio exitosamente");
                 this.setVisible(false);
                 new Main().main();
-            } else {
-                JOptionPane.showMessageDialog(null, "¡Usuario y/o contraseña incorrectos!");
+            } else if (ContraCambio.ValidarContra(Contraseña,ContraseñaNueva).equals("NO")) {
+                JOptionPane.showMessageDialog(null, "¡La contraseña actual no es correcta!");
             }
         }
     }//GEN-LAST:event_Generar1ActionPerformed
