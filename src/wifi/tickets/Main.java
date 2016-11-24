@@ -156,7 +156,7 @@ public class Main extends javax.swing.JFrame {
 
     private void GenTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenTicketActionPerformed
         this.setVisible(false);
-        new Tickets().setVisible(true);
+        new Tickets().main();
     }//GEN-LAST:event_GenTicketActionPerformed
 
     private void RegistroVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroVentaActionPerformed
@@ -176,7 +176,7 @@ public class Main extends javax.swing.JFrame {
 
     private void PlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlanesActionPerformed
         this.setVisible(false);
-        new Planes().setVisible(true);
+        new Planes().main();
     }//GEN-LAST:event_PlanesActionPerformed
 
     /**
@@ -211,7 +211,7 @@ public class Main extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
-                ValidarLoginx VLX = new ValidarLoginx();
+                ValidarLogin VLX = new ValidarLogin();
 
                 try {
                     Connection conn = DbConnect.getConnection();
